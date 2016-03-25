@@ -128,7 +128,7 @@ function searchFirstSubtitleUrl (token, searchParams) {
         cb();
       } else {
         debug("Search result %d", result.data.length);
-        var url = result.data[0].SubDownloadLink;
+        var url = result.data.sort(function(a,b){return -1 + 2*( +a.SubDownloadsCnt<+b.SubDownloadsCnt)})[0].SubDownloadLink;
         cb(null, url);
       }
     }, token, [searchParams]);
